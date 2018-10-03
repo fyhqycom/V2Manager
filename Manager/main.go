@@ -268,31 +268,31 @@ func startV2Ray(){
     V2config = v2config
     pid, err := runV2Ray(V2config)
     if err != nil {
-    	os.Exit(1)
+        os.Exit(1)
     }
     var alive = checkV2ray(pid)
     if(alive){
         serviceLogger(fmt.Sprintf("Started V2Ray! Pid:%d", pid), 32)
         V2RayPid = pid
     }else{
-    	serviceLogger("Cannot Start V2Ray!", 31)
-    	os.Exit(1)
+        serviceLogger("Cannot Start V2Ray!", 31)
+        os.Exit(1)
     }
 }
 
 func runV2Ray(v2config string) (int, error){
-	cmd := exec.Command("/usr/bin/v2ray/v2ray", "-config", v2config)
+    cmd := exec.Command("/usr/bin/v2ray/v2ray", "-config", v2config)
     ppReader, err := cmd.StdoutPipe()
     defer ppReader.Close()
     var bufReader = bufio.NewReader(ppReader)
     if err != nil {
-		serviceLogger(fmt.Sprintf("Create cmd stdoutpipe failed, Error: %s!", err), 31)
+        serviceLogger(fmt.Sprintf("Create cmd stdoutpipe failed, Error: %s!", err), 31)
         return 0, err
     }
     err = cmd.Start()
     if err != nil {
-		serviceLogger(fmt.Sprintf("Cannot start V2Ray, Error: %s!n",err), 31)
-		return 0, err
+        serviceLogger(fmt.Sprintf("Cannot start V2Ray, Error: %s!n",err), 31)
+        return 0, err
     }
     go func() {
         var buffer []byte = make([]byte, 4096)
@@ -300,10 +300,10 @@ func runV2Ray(v2config string) (int, error){
             n, err := bufReader.Read(buffer)
             if err != nil {
                 if err == io.EOF {
-					serviceLogger(fmt.Sprintf("ERROR: %s!", "pipi has Closed"), 31)
+                    serviceLogger(fmt.Sprintf("ERROR: %s!", "pipi has Closed"), 31)
                     break
                 } else {
-                	break
+                    break
                 }
             }
             fmt.Print(string(buffer[:n]))
@@ -355,28 +355,28 @@ func selectDB() (map[int]map[string]string, error){
     if err != nil {
         serviceLogger(fmt.Sprintf("Mysql Error: %s", err), 31)
     }else{
-	    for rows.Next() {
-	        var id int
-	        var uuid string
-	        var t int
-	        var u int
-	        var d int
-	        var transfer_enable int
-	        err = rows.Scan(&id, &uuid, &t, &u, &d, &transfer_enable)
-	        checkErr(err)
-	        usermap := make(map[string]string)
-	        usermap["id"] = strconv.Itoa(id)
-	        usermap["uuid"] = strings.ToUpper(uuid)
-	        usermap["t"] = strconv.Itoa(t)
-	        usermap["u"] = strconv.Itoa(u)
-	        usermap["d"] = strconv.Itoa(d)
-	        usermap["transfer_enable"] = strconv.Itoa(transfer_enable)
-	        dbusersget[id] = usermap
-	    }
+        for rows.Next() {
+            var id int
+            var uuid string
+            var t int
+            var u int
+            var d int
+            var transfer_enable int
+            err = rows.Scan(&id, &uuid, &t, &u, &d, &transfer_enable)
+            checkErr(err)
+            usermap := make(map[string]string)
+            usermap["id"] = strconv.Itoa(id)
+            usermap["uuid"] = strings.ToUpper(uuid)
+            usermap["t"] = strconv.Itoa(t)
+            usermap["u"] = strconv.Itoa(u)
+            usermap["d"] = strconv.Itoa(d)
+            usermap["transfer_enable"] = strconv.Itoa(transfer_enable)
+            dbusersget[id] = usermap
+        }
         rows.Close()
-    	return dbusersget, nil
-	}
-	return dbusersget, err
+        return dbusersget, nil
+    }
+    return dbusersget, err
 }
 
 func InitUsers(){
@@ -410,7 +410,7 @@ func CheckUsers(mcheck_time int){
     newusers, err := selectDB()
     if(err != nil){
         serviceLogger("Skipped Round Check!", 33)
-	}else{
+    }else{
         var umymap = make(map[string]map[string]string)
         for k, v := range newusers{
             if(mcheck_time != check_time){
@@ -488,7 +488,7 @@ func CheckUsers(mcheck_time int){
             }
         }
         V2_users = newusers
-	}
+    }
 }
 
 func makeUpdateQueue(umymap map[string]map[string]string){
