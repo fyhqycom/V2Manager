@@ -3,7 +3,8 @@
 
 # 当前版本
 * Beggar - V0.1
-* 本Manager使用的是Gold版的原生代码，不是什么都是Bug的测试产物
+* 本Manager使用的是Gold版的原生代码，不是那种各种Bug的捣糨糊产物
+* 同步维护与Gold版Manager共有的代码部分
 * 编译版只提供64bit版本，适用于64bit的所有linux系统(CentOS, Debian, etc)
 
 # 使用方法
