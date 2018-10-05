@@ -62,7 +62,6 @@ var Mydb *sql.DB
 var (
     cfg = flag.String("cfg", "", "Config file for Manager.")
     V2cfg = flag.String("V2cfg", "", "Config file for V2Ray.")
-    MPath = flag.String("path", "", "Path to V2Ray Manager.")
     MVersion = flag.Bool("version", false, "Show version for Manager.")
 )
 
