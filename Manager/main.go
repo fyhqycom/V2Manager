@@ -56,7 +56,7 @@ var AlterID uint32
 var Mysql_Server string
 var V2config string
 var CheckRate int
-var M2Version = "Beggar - V0.1"
+var M2Version = "Beggar - V0.1.2"
 var Mydb *sql.DB
 
 var (
@@ -617,8 +617,9 @@ func GetUserTrafficAndReset(u *VUser) TrafficInfo {
         Reset_: true,
     })
     if err != nil {
-        var nilerror = fmt.Sprintf("rpc error: code = Unknown desc = App|Stats|Command: user>>>%s>>>traffic>>>uplink not found.", u.GetEmail())
-        if fmt.Sprintf("%v", err) != nilerror{
+        var nilerror = strings.Replace(fmt.Sprintf("%v", err), " ", "", -1)
+        var nilerror2 = fmt.Sprintf("user>>>%s>>>traffic>>>uplinknotfound", u.GetEmail())
+        if !strings.Contains(nilerror, nilerror2) {
             serviceLogger(fmt.Sprintf("Get User %s's Uplink Traffic Failed, Error: %v", u.GetEmail(), err), 31)
         }
         return ti
@@ -628,8 +629,9 @@ func GetUserTrafficAndReset(u *VUser) TrafficInfo {
         Reset_: true,
     })
     if err != nil {
-        var nilerror = fmt.Sprintf("rpc error: code = Unknown desc = App|Stats|Command: user>>>%s>>>traffic>>>downlink not found.", u.GetEmail())
-        if fmt.Sprintf("%v", err) != nilerror{
+        var nilerror = strings.Replace(fmt.Sprintf("%v", err), " ", "", -1)
+        var nilerror2 = fmt.Sprintf("user>>>%s>>>traffic>>>downlinknotfound", u.GetEmail())
+        if !strings.Contains(nilerror, nilerror2) {
             serviceLogger(fmt.Sprintf("Get User %s's Downlink Traffic Failed, Error: %v", u.GetEmail(), err), 31)
         }
         return ti

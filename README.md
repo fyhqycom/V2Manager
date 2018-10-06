@@ -61,4 +61,5 @@ CheckRate | 流量更新检查时间(秒) | 60
 * <a href='https://ko-fi.com/U7U7K54E' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee' /></a>
 
 # 更新日志
+* 0.1.2 修正无上传/下载时的报错问题(V2ray 3.46)
 * 0.1 代码删减完成，上传主体
