@@ -2,7 +2,7 @@
 一个开源的使用Golang编写的V2Manager(适配V2raySocks)
 
 # 当前版本
-* Beggar - V0.1
+* Beggar - V0.1.2
 * 本Manager使用的是Gold版的原生代码，不是那种各种Bug的捣糨糊产物
 * 同步维护与Gold版Manager共有的代码部分
 * 编译版只提供64bit版本，适用于64bit的所有linux系统(CentOS, Debian, etc)
