@@ -51,6 +51,7 @@ var V2rayClientAddr string
 var V2rayTag string
 var V2RayPid int
 var EmailPostfix string
+var Level uint32
 var AlterID uint32
 var Mysql_Server string
 var V2config string
