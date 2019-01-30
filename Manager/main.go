@@ -82,7 +82,6 @@ func initMysql() {
 }
 
 func start(){
-    Level = 1
     if *cfg != "" {
         serviceLogger(fmt.Sprintf("Loading Config: %s\n", *cfg), 0)
         config = parseConfig.New(*cfg)
@@ -422,7 +421,7 @@ func CheckUsers(mcheck_time int){
             var userr = &VUser{
                 Email:     emails,
                 UUID:      uuids,
-                AlterID:   64,
+                AlterID:   AlterID,
                 Level:     Level,
                 ID:        ids,
             }
@@ -466,7 +465,7 @@ func CheckUsers(mcheck_time int){
             var userr = &VUser{
                 Email:     emails,
                 UUID:      uuids,
-                AlterID:   64,
+                AlterID:   AlterID,
                 Level:     Level,
                 ID:        ids,
             }
@@ -477,7 +476,7 @@ func CheckUsers(mcheck_time int){
                     var nuserr = &VUser{
                         Email:     emails,
                         UUID:      newusers[k]["uuid"],
-                        AlterID:   64,
+                        AlterID:   AlterID,
                         Level:     Level,
                         ID:        ids,
                     }
@@ -550,7 +549,7 @@ func testAddUser() error{
     var u = &VUser{
         Email:     emaill,
         UUID:      "3E187519-A207-4861-A589-2FE460E316CD",
-        AlterID:   64,
+        AlterID:   AlterID,
         Level:     Level,
         ID:        0,
     }
