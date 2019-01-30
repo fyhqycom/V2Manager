@@ -51,12 +51,11 @@ var V2rayClientAddr string
 var V2rayTag string
 var V2RayPid int
 var EmailPostfix string
-var Level uint32
 var AlterID uint32
 var Mysql_Server string
 var V2config string
 var CheckRate int
-var M2Version = "Beggar - V0.1.2"
+var M2Version = "Beggar - V0.1.3"
 var Mydb *sql.DB
 
 var (
@@ -82,6 +81,7 @@ func initMysql() {
 }
 
 func start(){
+    Level = 1
     if *cfg != "" {
         serviceLogger(fmt.Sprintf("Loading Config: %s\n", *cfg), 0)
         config = parseConfig.New(*cfg)
@@ -422,7 +422,7 @@ func CheckUsers(mcheck_time int){
                 Email:     emails,
                 UUID:      uuids,
                 AlterID:   64,
-                Level:     1,
+                Level:     Level,
                 ID:        ids,
             }
             u, err := strconv.Atoi(v["u"])
@@ -466,7 +466,7 @@ func CheckUsers(mcheck_time int){
                 Email:     emails,
                 UUID:      uuids,
                 AlterID:   64,
-                Level:     1,
+                Level:     Level,
                 ID:        ids,
             }
             if _, ok := newusers[k]; ok {
@@ -477,7 +477,7 @@ func CheckUsers(mcheck_time int){
                         Email:     emails,
                         UUID:      newusers[k]["uuid"],
                         AlterID:   64,
-                        Level:     1,
+                        Level:     Level,
                         ID:        ids,
                     }
                     addUser(nuserr)
@@ -550,7 +550,7 @@ func testAddUser() error{
         Email:     emaill,
         UUID:      "3E187519-A207-4861-A589-2FE460E316CD",
         AlterID:   64,
-        Level:     1,
+        Level:     Level,
         ID:        0,
     }
     resp, err := client.AlterInbound(ctx, &command.AlterInboundRequest{
