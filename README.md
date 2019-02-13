@@ -2,7 +2,7 @@
 一个开源的使用Golang编写的V2Manager(适配V2raySocks)
 
 # 当前版本
-* Beggar - V0.1.2
+* Beggar - V0.1.3
 * 本Manager使用的是Gold版的原生代码，不是那种各种Bug的捣糨糊产物
 * 同步维护与Gold版Manager共有的代码部分
 * 编译版只提供64bit版本，适用于64bit的所有linux系统(CentOS, Debian, etc)
@@ -62,5 +62,6 @@ CheckRate | 流量更新检查时间(秒) | 60
 * <a href='https://ko-fi.com/U7U7K54E' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=f' border='0' alt='Buy Me a Coffee' /></a>
 
 # 更新日志
+* 0.1.3 修正Level和Alterid设置带来的混淆问题，改成全局config读取自动设置
 * 0.1.2 修正无上传/下载时的报错问题(V2ray 3.46)
 * 0.1 代码删减完成，上传主体

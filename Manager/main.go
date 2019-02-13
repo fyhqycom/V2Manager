@@ -56,7 +56,7 @@ var AlterID uint32
 var Mysql_Server string
 var V2config string
 var CheckRate int
-var M2Version = "Beggar - V0.1.2"
+var M2Version = "Beggar - V0.1.3"
 var Mydb *sql.DB
 
 var (
@@ -421,8 +421,8 @@ func CheckUsers(mcheck_time int){
             var userr = &VUser{
                 Email:     emails,
                 UUID:      uuids,
-                AlterID:   64,
-                Level:     1,
+                AlterID:   AlterID,
+                Level:     Level,
                 ID:        ids,
             }
             u, err := strconv.Atoi(v["u"])
@@ -465,8 +465,8 @@ func CheckUsers(mcheck_time int){
             var userr = &VUser{
                 Email:     emails,
                 UUID:      uuids,
-                AlterID:   64,
-                Level:     1,
+                AlterID:   AlterID,
+                Level:     Level,
                 ID:        ids,
             }
             if _, ok := newusers[k]; ok {
@@ -476,8 +476,8 @@ func CheckUsers(mcheck_time int){
                     var nuserr = &VUser{
                         Email:     emails,
                         UUID:      newusers[k]["uuid"],
-                        AlterID:   64,
-                        Level:     1,
+                        AlterID:   AlterID,
+                        Level:     Level,
                         ID:        ids,
                     }
                     addUser(nuserr)
@@ -549,8 +549,8 @@ func testAddUser() error{
     var u = &VUser{
         Email:     emaill,
         UUID:      "3E187519-A207-4861-A589-2FE460E316CD",
-        AlterID:   64,
-        Level:     1,
+        AlterID:   AlterID,
+        Level:     Level,
         ID:        0,
     }
     resp, err := client.AlterInbound(ctx, &command.AlterInboundRequest{
